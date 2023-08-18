@@ -1,0 +1,92 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Registrace";
+}
+
+
+
+<section id="navHeader">
+</section>
+
+
+<section id="register-scroll" class="d-flex flex-column min-vh-100">
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+		<div class="container  text-dark">
+			<h1>@ViewData["Title"]</h1>
+			<hr />
+			<div class="row pt-4">
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.Name"></label>
+					<input asp-for="Input.Name" class="form-control" placeholder="Jan" aria-required="true"/>
+					<span asp-validation-for="Input.Name" class="text-danger"></span>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.LastName"></label>
+					<input asp-for="Input.LastName" class="form-control" placeholder="Novák" aria-required="true"/>
+					<span asp-validation-for="Input.LastName" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.Email"></label>
+					<input asp-for="Input.Email" class="form-control" placeholder="jan.novak@email.com" aria-required="true"/>
+					<span asp-validation-for="Input.Email" class="text-danger"></span>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.TelephoneNumber"></label>
+					<input asp-for="Input.TelephoneNumber" class="form-control" placeholder="123456789" aria-required="true"/>
+					<span asp-validation-for="Input.TelephoneNumber" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.StreetName"></label>
+					<input asp-for="Input.StreetName" class="form-control" placeholder="Náměstí 28. října" aria-required="true"/>
+					<span asp-validation-for="Input.StreetName" class="text-danger"></span>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.BuildingNumber"></label>
+					<input asp-for="Input.BuildingNumber" class="form-control" placeholder="1843/7" aria-required="true"/>
+					<span asp-validation-for="Input.BuildingNumber" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.CityName"></label>
+					<input asp-for="Input.CityName" class="form-control" placeholder="Brno" aria-required="true"/>
+					<span asp-validation-for="Input.CityName" class="text-danger"></span>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.ZipCode"></label>
+					<input asp-for="Input.ZipCode" class="form-control" placeholder="60200" aria-required="true"/>
+					<span asp-validation-for="Input.ZipCode" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.Password"></label>
+					<input asp-for="Input.Password" class="form-control" autocomplete="new-password"  placeholder="Abc!123" aria-required="true" />				
+					<span asp-validation-for="Input.Password" class="text-danger"></span>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label asp-for="Input.ConfirmPassword"></label>
+					<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />					
+					<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<button id="registerSubmit" type="submit" class="btn btn-success" style="width:200px">Registrovat</button>
+		</div>
+		<div class="pt-2">
+			<p class="text-center">
+				<a class="text-light" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Již máte účet? Přihlaste se</a>
+        </p>
+    </div>
+    </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+</section>

@@ -1,0 +1,271 @@
+﻿@using ProjectInsurance.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+	ViewData["Title"] = "Evidence pojištění";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<section id="navHeader">
+</section>
+
+
+<header class="masthead">
+	<div class="container">
+		<div class="intro-text">
+			<div class="intro-lead-in" style="margin-bottom: 25px;"><span class="text-white">Pojištění&nbsp;</span></div>
+			<div class="intro-heading text-uppercase"><span class="fs-1 text-white">Víme jaké pojištěni potřebujte</span></div><a class="btn btn-dark btn-xl text-uppercase" role="button" href="#portfolio">ukázat víc</a>
+		</div>
+	</div>
+</header>
+
+
+<section class="bg-light" id="portfolio">
+	<div class="container services">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h2 class="text-uppercase section-heading text-dark">Služby</h2>
+				<h3 class="section-subheading text-dark">Vyberte si vaše pojištění těd</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-md-4 portfolio-item">
+				<a class="portfolio-link" href="#portfolioModal1" data-bs-toggle="modal">
+					<div class="portfolio-hover">
+						<div class="portfolio-hover-content"></div>
+					</div><img class="img-fluid" src="~/img/services/car.png">
+					<div class="text-bg-primary portfolio-caption">
+						<h4 class="text-dark"><strong><span style="color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) ;">Povinné ručení</span></strong></h4>
+						<p class="fs-6 text-muted">Auta, motorky, ctyřkolky, obytné auta, kamiony, autobusy, přivěsy</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4 portfolio-item">
+				<a class="portfolio-link" href="#portfolioModal6" data-bs-toggle="modal">
+					<div class="portfolio-hover">
+						<div class="portfolio-hover-content"></div>
+					</div><img class="img-fluid" src="~/img/services/carBroken.png">
+					<div class="text-bg-primary portfolio-caption">
+						<h5 class="text-dark">Havarijní pojištění</h5>
+						<p class="text-muted">Živelné pohromy, ruzná připojištění, výběr spoluúčasti</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4 portfolio-item">
+				<a class="portfolio-link" href="#portfolioModal3" data-bs-toggle="modal">
+					<div class="portfolio-hover">
+						<div class="portfolio-hover-content"></div>
+					</div>
+					<img class="img-fluid" src="~/img/services/portfolio.png" alt="Portfolio Image">
+					<div class="text-bg-primary portfolio-caption">
+						<h4 class="text-dark">Pojištění odpovědnosti</h4>
+						<p class="text-muted">&nbsp;najemníka, vlastnika nemovitosti, do zaměstnání</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4 portfolio-item">
+				<a class="portfolio-link" href="#portfolioModal4" data-bs-toggle="modal">
+					<div class="portfolio-hover">
+						<div class="portfolio-hover-content"></div>
+					</div><img class="img-fluid" src="~/img/services/travel-baggage.png">
+					<div class="text-bg-primary portfolio-caption">
+						<h4 class="text-dark">Cestovni pojištění do zahraničí</h4>
+						<p class="text-muted">Do zahraničí včetně krytí COVID-19</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4 portfolio-item">
+				<a class="portfolio-link" href="#portfolioModal5" data-bs-toggle="modal">
+					<div class="portfolio-hover">
+						<div class="portfolio-hover-content"></div>
+					</div><img class="img-fluid" src="~/img/services/dog.png">
+					<div class="text-bg-primary portfolio-caption">
+						<h5 class="text-dark">Pojištění mazličků</h5>
+						<p class="text-muted">Cestovaní s vaším mazlíčkem, připojištění k cestovnímu pojištění</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-sm-6 col-md-4 portfolio-item">
+				<a class="portfolio-link" href="#portfolioModal2" data-bs-toggle="modal">
+					<div class="portfolio-hover">
+						<div class="portfolio-hover-content"></div>
+					</div><img class="img-fluid" src="~/img/services/home.png">
+					<div class="text-bg-primary portfolio-caption">
+						<h5 class="text-dark">Pojištění majetku&nbsp;</h5>
+						<p class="text-muted">Dům, byt, chata, chalupa, garáž, Trvalé a přechodné obyvané</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<div class="modal fade text-center portfolio-modal" role="dialog" tabindex="-1" id="portfolioModal1">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<h2 class="text-uppercase text-dark">Povinné ručení</h2>
+							<p class="text-dark item-intro">na vozidlo od 100 Kč za den</p>
+							<ul class="text-start">
+								<li>Vyplacení peněz do 5 dnů od doložení všech podkladů</li>
+								<li>Zajímavé benefity jako garance ceny nebo nadstandardní asistence</li>
+								<li>Vyřízení pojistné události s pojišťovnou viníka</li>
+								<li>Nonstop asistenční služba</li>
+								<li>Široká síť smluvních servisů</li>
+							</ul>
+							<ul class="text-start">
+								<li class="text-dark">Client: Pojištěnec</li>
+								<li class="text-dark">Categorie: Auta,Motorky,Čtyřkolky,Obytné auta,Kamiony,Autobusy,Přívěsy</li>
+							</ul><button class="btn btn-primary" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;Závřít okno</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade text-center text-dark portfolio-modal" role="dialog" tabindex="-1" id="portfolioModal6">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<h2 class="text-uppercase text-dark">Havarijní ručení</h2>
+							<p class="text-dark item-intro">na vozidlo od 100 Kč za den</p>
+							<ul class="text-start">
+								<li>Sleva až 60 % za jízdu bez nehod</li>
+								<li>Asistenční služba zdarma</li>
+								<li>Pro ČR i Evropu</li>
+								<li>Nonstop asistenční služba</li>
+								<li>K variantě All Risk úrazové pojištění všech cestujících zdarma</li>
+							</ul>
+							<ul class="text-start">
+								<li class="text-dark">Client: Pojištěnec</li>
+								<li class="text-dark">Categorie: Živelné pohromy,Ruzná pojištění,Výběr spoluúčasti</li>
+							</ul><button class="btn btn-primary" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;Závřít okno</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade text-center portfolio-modal" role="dialog" tabindex="-1" id="portfolioModal3">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<h2 class="text-uppercase text-dark">Pojištění odpovědnosti</h2>
+							<p>Komplexní pojištění</p>
+							<ul class="text-start">
+								<li>Vztahuje se i na další členy společné domácnosti</li>
+								<li>Platí na škody způsobené domácími mazlíčky i hospodářskými zvířaty</li>
+								<li>Možnost každý rok vyčerpat až dvojnásobek limitu plnění, počet událostí není omezen</li>
+								<li>Poskytuje ochranu po celé kontinentální Evropě</li>
+								<li>V základním rozsahu částečně zahrnuje i pojištění odpovědnosti z nemovitosti</li>
+							</ul>
+							<ul class="text-start">
+								<li class="text-dark">Client: Pojištěnec</li>
+								<li class="text-dark">Categorie: Nájemníka,Vlastníka nemovitostí,Do zaměstnaní</li>
+							</ul><button class="btn btn-primary" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;Závřít okno</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade text-center text-dark portfolio-modal" role="dialog" tabindex="-1" id="portfolioModal4">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<h2 class="text-uppercase text-dark">Cestovní pojištění do zahraničí</h2>
+							<p></p>
+							<ul class="text-start">
+								<li>Pojistné krytí až 100 000 000 Kč</li>
+								<li>Nonstop asistenční služba v češtině</li>
+								<li>Na cesty po ČR, Evropě i po světě</li>
+								<li>Slevy pro děti i rodiny</li>
+							</ul>
+							<ul class="text-start">
+								<li class="text-dark">Client: Pojištěnec</li>
+								<li class="text-dark">Categorie: Do zahraničí včetně krytí COVID-19</li>
+							</ul><button class="btn btn-primary" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;Závřít okno</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade text-center text-dark portfolio-modal" role="dialog" tabindex="-1" id="portfolioModal5">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<h2 class="text-uppercase text-dark">Pojištění mazličků</h2>
+							<p class="text-dark item-intro">na vozidlo od 100 Kč za den</p>
+							<ul class="text-start">
+								<li>Pojištění léčení úrazu nebo nemoci</li>
+								<li>Pojištění nadstandardních nákladů na léčení</li>
+								<li>Pojištění asistence</li>
+							</ul>
+							<ul class="text-start">
+								<li class="text-dark">Client: Pojištěnec</li>
+								<li class="text-dark">Categorie: Cestování s vaším mazličkem,Připojištění k cestovanímu pojištění</li>
+							</ul><button class="btn btn-primary" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;Závřít okno</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade text-center portfolio-modal" role="dialog" tabindex="-1" id="portfolioModal2">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<h2 class="text-uppercase text-dark">Pojištění majetku</h2>
+							<p class="text-dark item-intro">na vozidlo od 100 Kč za den</p>
+							<ul class="text-start">
+								<li>Pojištění domu, bytu i chaty</li>
+								<li>Pojištění proti přírodním živlům, vichrům a tornádům</li>
+								<li>Pojištění vybavení domácnosti</li>
+								<li>Pojištění odpovědnosti občana za škodu</li>
+								<li>Široká nabídka připojištění atypických předmětů</li>
+								<li>Nonstop asistenční služba</li>
+							</ul>
+							<ul class="text-start">
+								<li class="text-dark">Client: Pojištěnec</li>
+								<li class="text-dark">Categorie: Dům,Byt,Chata,Chalupa,Garáž,Trvalé a přechodové obyvané</li>
+							</ul><button class="btn btn-primary" type="button" data-bs-dismiss="modal"><i class="fa fa-times"></i><span>&nbsp;Závřít okno</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

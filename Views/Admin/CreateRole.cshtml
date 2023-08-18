@@ -1,0 +1,35 @@
+﻿@model RolesModel
+
+@{
+	ViewData["Title"] = "Přidat roli";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="adminCSS">
+	<form asp-action="CreateRole">
+		<div class="container">
+			<h1>@ViewData["Title"]</h1>
+			<hr />
+			<div class="row pt-4">
+				<div class="col-md-12 col-lg-12 mb-3">
+					<label asp-for="RoleName" class="control-label"></label>
+					<input asp-for="RoleName" class="form-control" placeholder="Název role" />
+					<span asp-validation-for="RoleName" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<div class="text-center text-sm-between px-3">
+			<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</button>
+			<a asp-action="IndexRole" asp-controller="Admin" class="btn btn-secondary btn-outline-primary" style="width:200px">
+				Zpět na seznam
+			</a>
+		</div>
+	</form>
+	@section Scripts
+		{
+		<!--Client side validation-->
+		@{
+			<partial name="_ValidationScriptsPartial" />
+		}
+	}
+</section>

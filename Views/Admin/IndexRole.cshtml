@@ -1,0 +1,47 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="adminCSS">
+    <div class="container services" style="width: auto;">
+        <h1>@ViewData["Title"]</h1>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4 class="mb-0 text-center">Role List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>ID</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var obj in Model)
+                                    {
+                                        <tr>
+                                            <td>@obj.Name</td>
+                                            <td>@obj.Id</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-danger" type="button" asp-controller="Admin" asp-action="DeleteRole" asp-route-id="@obj.Id">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

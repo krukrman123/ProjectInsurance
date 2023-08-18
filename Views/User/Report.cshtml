@@ -1,0 +1,135 @@
+﻿@model UserReportModel
+@{
+    ViewData["Title"] = "Report";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/InsuranceRecordsWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <scirpt src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></scirpt>
+    <script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100"> 
+    @*User*@
+    <h3>Osobní údaje</h3>
+    <table class="table table-borderless table-sm" id="tab">
+        <tbody>
+            <tr>
+                <td>Jméno a příjmení:</td>                                    
+                <td>@Model.ApplicationUser.Name @Model.ApplicationUser.LastName</td>
+                <td></td>
+                <td>Bydliště:</td>
+                <td>@Model.ApplicationUser.StreetName @Model.ApplicationUser.BuildingNumber</td>
+                <td></td>  
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>@Model.ApplicationUser.Email</td>
+                <td></td>
+                <td>Obec:</td>
+                <td>@Model.ApplicationUser.CityName</td>
+                <td></td> 
+            </tr>
+            <tr>
+                <td>Mobil:</td>
+                <td>@Model.ApplicationUser.TelephoneNumber</td>
+                    <td></td> 
+                <td>PSČ:</td>
+                <td>@Model.ApplicationUser.ZipCode</td>
+                <td></td> 
+            </tr>
+        </tbody>
+    </table>
+    @*if there's no PolicyHodlers, we skip the loop for listing PolicyHolders/Insured*@
+    @if (Model.PolicyHolders.Count > 0)
+    {                 
+        //Liisting all of the PolicyHolders/Insured/Events
+        @foreach (var obj in Model.PolicyHolders)
+        {
+        <div class="row px-3 pt-1 align-items-start">
+        <hr class="border-2 col-6 col-lg-4 border-top border-primary">
+        </div> 
+
+        @*---------------------------------------------------Insured--------------------------------------------------*@
+        <h4 class="pt-1">Pojištěnec</h4>
+        <table class="table table-borderless table-sm" id="tab">
+            <tbody>
+                <tr>
+                    <td class="width: 16%">Jméno a příjmení:</td>                                    
+                    <td class="width: 16%">@obj.Name @obj.LastName</td>
+                    <td class="width: 16%">Email:</td>
+                    <td class="width: 16%">@obj.EMail</td>
+                    <td class="width: 16%">Mobil:</td>
+                    <td class="width: 16%">@obj.TelephoneNumber</td>                           
+                </tr>
+                <tr>
+                    <td class="width: 16%">Bydliště:</td>
+                    <td class="width: 16%">@obj.StreetName @obj.BuildingNumber</td>
+                    <td class="width: 16%">Obec:</td>
+                    <td class="width: 16%">@obj.CityName</td>  
+                    <td class="width: 16%">PSČ:</td>
+                    <td class="width: 16%">@obj.ZIPCode</td>
+                </tr>             
+            </tbody>
+        </table>
+        @*------------------------------------------------Insurances----------------------------------------------------*@
+            if (Model.Insurances != null)
+            { 
+                @foreach (var obi in Model.Insurances)
+                {
+                    @if (obj.Id == obi.InsuranceHolderId)
+                    {
+                        <h5 class="pt-4">Pojištění</h5>
+                                
+                            <table class="table table-borderless  table-sm" id="tab">
+                                <tbody>
+                                    <tr>
+                                        <td class="width: 10%">Pojištění</td>                                    
+                                        <td class="width: 10%">@obi.InsuranceType</td>
+                                        <td class="width: 10%">Předmět:</td>
+                                        <td class="width: 10%">@obi.InsuranceSubject</td>
+                                        <td class="width: 10%">Částka (Kč):</td>
+                                        <td class="width: 10%">@obi.InsuranceAmount</td>                         
+                                    </tr>
+                                    <tr>
+                                        <td class="width: 16%">Platnost od:</td>
+                                        <td class="width: 16%">@obi.InsuranceValidFrom.ToString("dd/MM/yyyy")</td>
+                                        <td class="width: 16%">Platnost do:</td>
+                                        <td class="width: 16%">@obi.InsuranceValidUntil.ToString("dd/MM/yyyy")</td>                                         
+                                    </tr>      
+                                </tbody>
+                            </table>                               
+                    }
+                    @*--------------------------------------Insurance events----------------------------------------------*@
+                    if (Model.InsuranceEvents != null)
+                    {
+                        @foreach (var obe in Model.InsuranceEvents)
+                        {
+                            @if (obi.Id == obe.InsuranceId && obj.Id == obe.PolicyHolderId)
+                            {
+                                       
+                                    <table class="table table-borderless table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>Datum škodné události: @obe.InsuranceEventTime.ToString("dd/MM/yyyy")</td>
+                                            </tr>
+                       
+                                        </tbody>
+                                    </table>                                                                                    
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</body>
+
+</html>

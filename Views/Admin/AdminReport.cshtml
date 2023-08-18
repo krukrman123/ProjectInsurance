@@ -1,0 +1,75 @@
+﻿@using ProjectInsurance.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model AdminUserModel
+@inject UserManager<ApplicationUser> UserManager
+@{
+	ViewData["Title"] = "Report";
+	Layout = "";
+}
+@{
+	int totalInsuranceAmount = 0;
+	foreach (var obi in Model.Insurances)
+	{
+		int parsedAmount = int.Parse(obi.InsuranceAmount);
+		totalInsuranceAmount += parsedAmount;
+	}
+
+	int totalInsuranceEventAmount = 0;
+	foreach (var obi in Model.Insurances)
+	{
+		if (Model.InsuranceEvents.Count() > 0)
+		{
+			foreach (var obe in Model.InsuranceEvents)
+			{
+				if (obe.InsuranceId == obi.Id)
+				{ 
+					int parsedAmount = int.Parse(obi.InsuranceAmount);
+					totalInsuranceEventAmount += parsedAmount;
+				}
+			}
+		}		
+	}
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<scirpt src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></scirpt>
+	<script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h3>Statistiky</h3>
+	<table class="table table-striped table-sm" id="tab">
+		<tbody>
+			<tr>
+				<td>Počet uživatelů:</td>
+				<td>@Model.Users.Count()</td>
+			</tr>			
+			<tr>
+				<td>Počet pojištěnců:</td>
+				<td>@Model.PolicyHolders.Count()</td>
+			</tr>
+			<tr>
+				<td>Počet pojištění:</td>
+				<td>@Model.Insurances.Count()</td>
+			</tr>
+			<tr>
+				<td>Počet událostí:</td>
+				<td>@Model.InsuranceEvents.Count()</td>
+			</tr>			
+			<tr>
+				<td>Celková částka pojištění:</td>
+				<td>@totalInsuranceAmount Kč</td>
+			</tr>
+			<tr>
+				<td>Celková částka pojistných událostí:</td>
+				<td>@totalInsuranceEventAmount Kč</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+﻿@model InsuranceModel
+@{
+    ViewData["Title"] = "Detail pojištění";
+}
+<section id="adminCSS">
+<div class="container-fluid p3-">
+    <div class="container">
+            <h1>@ViewData["Title"]</h1>
+            <hr/>
+     
+        <div class="row">
+            <div class="col-6 col-sm-3 col-lg-2 px-5 px-sm-4">
+                <div>Pojištění:</div>
+                <div>Předmět:</div>
+                <div>Částka (Kč):</div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-3">
+                <div>@Model.InsuranceType</div>
+                <div>@Model.InsuranceSubject</div>
+                <div>@Model.InsuranceAmount</div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-2 px-5 px-sm-0 px-sm-0 pt-4 pt-sm-0">
+                <div>Platnost od:</div>
+                <div>Platnost do:</div>
+            </div>
+            <div class="col-6 col-sm-3 col-lg-3 pt-4 pt-sm-0">
+                <div>@Model.InsuranceValidFrom.ToString("dd/MM/yyyy")</div>
+                <div>@Model.InsuranceValidUntil.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+    </div>
+    <hr class="border-2 border-top border-primary">
+    @*buttons*@
+    <div class="container text-center">
+        <div class="d-flex flex-column flex-lg-row justify-content-center">
+            <div class="p-1">
+                <a asp-controller="Insurance" asp-action="Edit" asp-route-id="@Model.Id"
+                   class="btn btn-primary" style="width:300px"><i class="bi bi-pencil-square"></i>&nbsp;Editovat pojištění</a>
+            </div>
+            <div class="p-1">
+                <a asp-controller="Insurance" asp-action="Delete" asp-route-id="@Model.Id"
+                   class="btn btn-danger" style="width:300px"><i class="bi bi-trash"></i>&nbsp;Odstranit pojištění</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center pt-4">
+        <a asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-id="@Model.InsuranceHolderId" class="btn btn-secondary btn-outline-primary" style="width:300px">
+            Zpět
+        </a>
+    </div>
+</div>
+
+</section>

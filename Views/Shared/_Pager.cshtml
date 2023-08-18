@@ -1,0 +1,76 @@
+﻿@model PagerModel
+
+<div class="container pt-4 p-3">
+    @*@Model.CurrentPage
+    @Model.TotalPages*@
+    @if (Model.TotalPages > 1)
+    {
+        <ul class = "pagination justify-content-center">
+            @if (Model.CurrentPage > 1)
+            {
+               
+                <li class="page-item" style="width:100px">
+                    @if (ViewData["Title"] == "Moji pojištěnci")
+                    {
+                        <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@(Model.CurrentPage-1)">Předchozí</a>
+                    }
+                    @if (ViewData["Title"] == "Detail pojištěnce")
+                    {
+                        <a class="page-link" asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-pg="@(Model.CurrentPage-1)">Předchozí</a>
+                    } 
+                    @if (ViewData["Title"] == "Pojistné události")
+                    {
+                        <a class="page-link" asp-controller="InsuranceEventModels" asp-action="Index" asp-route-pg="@(Model.CurrentPage-1)">Předchozí</a>
+                    } 
+                </li>
+            }
+            else
+            {
+                <li class="page-item" style="width:100px">
+                    <a class="page-link isDisabled" >Předchozí</a>
+                </li>
+            }       
+            @for (var pge = Model.StartPage; pge <= Model.EndPage; pge++)
+            {
+                <li class="page-item @(pge == Model.CurrentPage ? "active" : "")")>
+                    @if (ViewData["Title"] == "Moji pojištěnci")
+                    {
+                        <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    }
+                    @if (ViewData["Title"] == "Detail pojištěnce")
+                    {
+                        <a class="page-link" asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-pg="@pge">@pge</a>
+                    }    
+                    @if (ViewData["Title"] == "Pojistné události")
+                    {
+                        <a class="page-link" asp-controller="InsuranceEventModels" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    }  
+                </li>
+            }           
+            @if (Model.CurrentPage >= Model.TotalPages)
+            {
+                <li class="page-item" style="width:100px">
+                    <a class="page-link isDisabled">Další</a>
+                </li>  
+            }
+            else
+            {
+                <li class="page-item" style="width:100px">
+                    @if (ViewData["Title"] == "Moji pojištěnci")
+                    {
+                        <a class="page-link" asp-controller="User" asp-action="Index" asp-route-pg="@(Model.CurrentPage+1)">Další</a>
+                    }
+                    @if (ViewData["Title"] == "Detail pojištěnce")
+                    {
+                        <a class="page-link" asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-pg="@(Model.CurrentPage+1)">Další</a>
+                    } 
+                    @if (ViewData["Title"] == "Pojistné události")
+                    {
+                        <a class="page-link" asp-controller="InsuranceEventModels" asp-action="Index" asp-route-pg="@(Model.CurrentPage+1)">Další</a>
+                    } 
+                </li>  
+            }                          
+          
+        </ul>
+    }
+</div>

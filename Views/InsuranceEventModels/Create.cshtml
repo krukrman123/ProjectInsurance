@@ -1,0 +1,78 @@
+﻿@using ProjectInsurance.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model InsuranceEventModel
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Nová událost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="adminCSS">
+<form method="post">
+	<div class="container">
+		<h1>@ViewData["Title"]</h1>
+			<hr />
+		<div class="row pt-4">
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceEventTime"></label>
+				<input asp-for="InsuranceEventTime" class="form-control" aria-required="true"/>				
+				<span asp-validation-for="InsuranceEventTime" class="text-danger"></span>
+			</div>		
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3" hidden>
+				<label asp-for="PolicyHolderId"></label>
+				<input asp-for="PolicyHolderId" class="form-control" readonly placeholder=@Model.PolicyHolderId/>
+				<span asp-validation-for="PolicyHolderId" class="text-danger"></span>
+			</div>			
+			<div class="col-md-6 mb-3" hidden>
+				<label asp-for="InsuranceId"></label>
+				<input asp-for="InsuranceId" class="form-control" readonly placeholder=@Model.InsuranceId/>
+				<span asp-validation-for="InsuranceId" class="text-danger"></span>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="PolicyHolderName"></label>
+				<input asp-for="PolicyHolderName" class="form-control" readonly placeholder=@Model.PolicyHolderName />
+				<span asp-validation-for="PolicyHolderName" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="PolicyHolderLastName"></label>
+				<input asp-for="PolicyHolderLastName" class="form-control" readonly placeholder=@Model.PolicyHolderLastName/>
+				<span asp-validation-for="PolicyHolderLastName" class="text-danger"></span>
+			</div>		
+		</div>	
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceType"></label>
+				<input asp-for="InsuranceType" class="form-control" readonly placeholder=@Model.InsuranceType />
+				<span asp-validation-for="InsuranceType" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceSubject"></label>
+				<input asp-for="InsuranceSubject" class="form-control" readonly placeholder=@Model.InsuranceSubject/>
+				<span asp-validation-for="InsuranceSubject" class="text-danger"></span>
+			</div>		
+		</div>			
+	</div>
+	@*buttons*@
+	<div class="text-center">
+		<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</button>
+		<a asp-controller="InsuranceEventModels" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Zpět
+		</a>
+	</div>
+</form>
+
+@section Scripts
+{
+	<!--Client side validation-->
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	
+}
+
+
+
+</section>

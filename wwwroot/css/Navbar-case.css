@@ -1,0 +1,49 @@
+.apple.logo {
+  font-size: 21px;
+  line-height: 0;
+  color:white;
+}
+
+.nav-link {
+  color: white !important;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.navbar.navbar-dark.navbar-expand-md.fixed-top.bg-dark {
+  background-color: black !important;
+  opacity: 0.8;
+}
+
+@media (max-width: 400px) {
+  #navcol-1 {
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 770px) {
+  #navcol-1 {
+    margin-top: 0px;
+    text-align: center;
+    border-radius: 10px;
+  }
+}
+
+.nav-link:hover {
+  background-color: gray;
+  border-radius: 10px;
+}
+
+@media (max-width: 440px) {
+  .logo {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 767px) {
+  .logo {
+    visibility: hidden;
+  }
+}
+

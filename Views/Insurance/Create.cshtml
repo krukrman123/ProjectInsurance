@@ -1,0 +1,76 @@
+﻿@model InsuranceModel
+@{
+    ViewData["Title"] = "Nové pojištění";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="adminCSS">
+<form method="post">
+	<div class="container">
+		<h1>@ViewData["Title"]</h1>
+			<hr />
+		<div class="text-center pt-4 col-12 col-md-6 text-md-start">
+			<h2 class="text-primary">@ViewBag.Name @ViewBag.LastName</h2>
+		</div>  
+		<div class="row pt-4">
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceType"></label>
+				<select asp-for="InsuranceType" class="form-control" aria-required="true">
+					<option value="">Vyberte</option>
+					<option value="Osoby">Osoby</option>
+					<option value="Majetku">Majetku</option>
+					<option value="Zájmu">Zájmu</option>				
+				</select>
+				<span asp-validation-for="InsuranceType" class="text-danger"></span>
+			</div>		
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceSubject"></label>
+				<input asp-for="InsuranceSubject" class="form-control" aria-required="true"/>
+				<span asp-validation-for="InsuranceSubject" class="text-danger"></span>
+			</div>			
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceAmount"></label>
+				<input asp-for="InsuranceAmount" class="form-control" aria-required="true"/>
+				<span asp-validation-for="InsuranceAmount" class="text-danger"></span>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceValidFrom"></label>
+				<input asp-for="InsuranceValidFrom" class="form-control" aria-required="true"/>
+				<span asp-validation-for="InsuranceValidFrom" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="InsuranceValidUntil"></label>
+				<input asp-for="InsuranceValidUntil" class="form-control" aria-required="true"/>
+				<span asp-validation-for="InsuranceValidUntil" class="text-danger"></span>
+			</div>		
+		</div>
+		<div class="row" hidden>
+			<div class="col-md-6 mb-3">
+					<label asp-for="InsuranceHolderId"></label>
+					<input asp-for="InsuranceHolderId" class="form-control" readonly placeholder=@Model.InsuranceHolderId/>
+					<span asp-validation-for="InsuranceHolderId" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	@*buttons*@
+	<div class="text-center">
+		<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</button>
+		<a asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-id="@Model.InsuranceHolderId" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Zpět
+		</a>
+	</div>
+</form>
+
+@section Scripts
+{
+	<!--Client side validation-->
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	
+}
+
+</section>

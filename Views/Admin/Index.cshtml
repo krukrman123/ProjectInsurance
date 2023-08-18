@@ -1,0 +1,369 @@
+﻿@using ProjectInsurance.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model AdminUserModel
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+	ViewData["Title"] = "Admin";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="adminCSS">
+<div class="container text-center text-md-start">
+	<h1>@ViewData["Title"]</h1>
+	<hr />
+	@*variables for collapses in foreach loops*@
+	@{int i = 0;}
+	@{int p = 0;}
+	@{int l = 0;}
+	@{int a = 0;}
+
+	@*if there's no users, we skip the loop for listing them*@
+	@if (Model.Users.Count > 0)
+	{
+		<h5 class="pt-4">Uživatelé</h5>
+		//Liisting all of the Users/PolicyHolders/Insured/Events
+		@foreach (var obu in Model.Users)
+		{
+			@if (await @UserManager.IsInRoleAsync(obu, "User"))
+			{
+				@*---------------------------------Collapse one-------------------------------------------*@
+				<p class="text-center text-md-start">
+					<button class="btn btn-primary" style="width:250px" type="button" data-bs-toggle="collapse"
+					data-target="#collapseOne_@i" href="#collapseOne_@i" aria-expanded="false">
+						@obu.Name @obu.LastName
+					</button>
+					@*---------------------------Collapse detail--------------------------------------*@
+					<button class="btn btn-outline-secondary" style="width:250px" type="button" data-bs-toggle="collapse"
+					data-target="#collapseOneDetail_@i" href="#collapseOneDetail_@i" aria-expanded="false">
+						Detail
+					</button>
+				</p>
+			}
+			@*--------------------------------------Collapse detail----------------------------------------*@
+			<div class="collapse" id="collapseOneDetail_@i">
+				<div class="card card-body border-0">
+					<form>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.Name"></label>
+									<input asp-for="@obu.Name" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.LastName"></label>
+									<input asp-for="@obu.LastName" class="form-control" readonly />
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.Email"></label>
+									<input asp-for="@obu.Email" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.TelephoneNumber"></label>
+									<input asp-for="@obu.TelephoneNumber" class="form-control" readonly />
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.StreetName"></label>
+									<input asp-for="@obu.StreetName" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.BuildingNumber"></label>
+									<input asp-for="@obu.BuildingNumber" class="form-control" readonly />
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.CityName"></label>
+									<input asp-for="@obu.CityName" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.ZipCode"></label>
+									<input asp-for="@obu.ZipCode" class="form-control" readonly />
+
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			@*-----------------------------------Collapse one----------------------------------------*@
+			<div class="collapse" id="collapseOne_@i">
+				<div class="card card-body border-0">
+
+					<h5>Pojištěnci</h5>
+					@*-------------------------------Adding Insured--------------------------------------*@
+					<div class="pb-4">
+						<a asp-controller="Admin" asp-action="CreatePolicyHolder" asp-route-userId=@obu.Id 
+						class="btn btn-outline-primary" style="width:160px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</a>                        
+                    </div>			
+					
+					@foreach (var obp in Model.PolicyHolders)
+					{
+						@if (obu.Id == obp.UserId)
+						{
+							<p>
+							@*---------------------------Collapse two--------------------------------*@
+							<button class="btn btn-outline-primary" style="width:250px" type="button" data-bs-toggle="collapse"
+							data-target="#collapseTwo_@p" href="#collapseTwo_@p" aria-expanded="false">
+								@obp.Name @obp.LastName
+							</button>
+							@*--------------------------------------Collapse detail----------------------------------*@
+							<button class="btn btn-outline-secondary" style="width:250px" type="button" data-bs-toggle="collapse"
+							data-target="#collapseTwoDetail_@p" href="#collapseTwoDetail_@p" aria-expanded="false">
+								Detail
+							</button>							                  
+							</p>
+						}
+						@*-------------------------------------Collapse detail--------------------------------------*@
+						<div class="collapse" id="collapseTwoDetail_@p">
+							<div class="card card-body border-0">
+								
+								<form>
+									<div class="container">
+										<div class=""> 
+											<a asp-controller="Admin" asp-action="EditPolicyHolder" asp-route-id="@obp.Id" 
+										class="btn btn-outline-primary" style="width:160px" ><i class="bi bi-pencil-square"></i>&nbsp;Editovat</a>
+										<a asp-controller="Admin" asp-action="DeletePolicyHolder" asp-route-id="@obp.Id" 
+											class="btn btn-danger" style="width:160px"><i class="bi bi-trash"></i>&nbsp;Odstranit</a>
+										</div>   
+										<div class="row pt-3">
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.Name"></label>
+												<input asp-for="@obp.Name" class="form-control" readonly />
+
+											</div>
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.LastName"></label>
+												<input asp-for="@obp.LastName" class="form-control" readonly />
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.EMail"></label>
+												<input asp-for="@obp.EMail" class="form-control" readonly />
+
+											</div>
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.TelephoneNumber"></label>
+												<input asp-for="@obp.TelephoneNumber" class="form-control" readonly />
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.StreetName"></label>
+												<input asp-for="@obp.StreetName" class="form-control" readonly />
+
+											</div>
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.BuildingNumber"></label>
+												<input asp-for="@obp.BuildingNumber" class="form-control" readonly />
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.CityName"></label>
+												<input asp-for="@obp.CityName" class="form-control" readonly />
+
+											</div>
+											<div class="col-md-6 mb-3">
+												<label asp-for="@obp.ZIPCode"></label>
+												<input asp-for="@obp.ZIPCode" class="form-control" readonly />
+
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						@*--------------------------------Collapse two-------------------------------------------*@
+						<div class="collapse" id="collapseTwo_@p">
+							<div class="card card-body border-0">
+
+								<h5>Pojištění</h5>
+								@*------------------------------Adding Insurance-------------------------------------*@
+								<div class="pb-4">
+									<a asp-controller="Admin" asp-action="CreateInsurance" asp-route-userId=@obp.Id 
+									class="btn btn-outline-primary" style="width:160px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</a>                        
+								</div>	
+
+								@foreach (var obi in Model.Insurances)
+								{
+									@if (obi.InsuranceHolderId == obp.Id)
+									{
+										@*-----------------------------Collapse three----------------------------*@										
+										<button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+										data-target="#collapseThree_@l" href="#collapseThree_@l" aria-expanded="false">
+											Pojištění @obi.InsuranceType: @obi.InsuranceSubject
+										</button>										
+									}
+									@*-------------------------Collapse three--------------------------------------*@
+									<div class="collapse" id="collapseThree_@l">
+										<div class="card card-body border-0">
+											<form>
+												<div class="container">
+													<div class="">
+														 <a asp-controller="Admin" asp-action="EditInsurance" asp-route-id="@obi.Id" 
+															class="btn btn-outline-primary" style="width:160px" ><i class="bi bi-pencil-square"></i>&nbsp;Editovat</a>														
+														<a asp-controller="Admin" asp-action="DeleteInsurance" asp-route-id="@obi.Id" 
+															class="btn btn-danger" style="width:160px"><i class="bi bi-trash"></i>&nbsp;Odstranit</a>										
+													</div>
+													<div class="row pt-3">
+														<div class="col-md-6 mb-3">
+															<label asp-for="@obi.InsuranceType"></label>
+															<input asp-for="@obi.InsuranceType" class="form-control" readonly />
+
+														</div>
+														<div class="col-md-6 mb-3">
+															<label asp-for="@obi.InsuranceSubject"></label>
+															<input asp-for="@obi.InsuranceSubject" class="form-control" readonly />
+
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-6 mb-3">
+															<label asp-for="@obi.InsuranceAmount"></label>
+															<input asp-for="@obi.InsuranceAmount" class="form-control" readonly />
+
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-6 mb-3">
+															<label asp-for="@obi.InsuranceValidFrom"></label>
+															<input asp-for="@obi.InsuranceValidFrom" class="form-control" readonly />
+
+														</div>
+														<div class="col-md-6 mb-3">
+															<label asp-for="@obi.InsuranceValidUntil"></label>
+															<input asp-for="@obi.InsuranceValidUntil" class="form-control" readonly />
+
+														</div>
+													</div>
+												</div>
+											</form>
+											<h5>Události</h5>
+											<div class="container"><a asp-controller="Admin" asp-action="CreateInsuranceEvent" asp-route-insuranceId=@obi.Id 
+												class="btn btn-outline-primary" style="width:160px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</a>                       
+											</div>
+											@foreach (var obe in Model.InsuranceEvents)
+											{
+												@if (obe.InsuranceId == obi.Id)
+												{
+													<form>
+														<div class="container">		
+															<div class="row pt-3">
+																<div class="col-md-6 mb-3">
+																	<label asp-for="@obe.InsuranceEventTime"></label>
+																	<input asp-for="@obe.InsuranceEventTime" class="form-control" readonly />
+																</div>
+															</div>
+															<div class=""> 
+																<a asp-controller="Admin" asp-action="EditInsuranceEvent" asp-route-id="@obe.Id" 
+																class="btn btn-outline-primary" style="width:160px" ><i class="bi bi-pencil-square"></i>&nbsp;Editovat</a>
+															
+																<a asp-controller="Admin" asp-action="DeleteInsuranceEvent" asp-route-id="@obe.Id" 
+																class="btn btn-danger" style="width:160px"><i class="bi bi-trash"></i>&nbsp;Odstranit</a>
+															</div>   
+														</div>
+													</form>
+												}
+											}
+										</div>
+									</div>
+									l++;
+								}
+							</div>
+						</div>
+						p++;
+					}
+				</div>
+			</div>
+			i++;
+		}
+
+		<h5 class="pt-4">Administrátoři</h5>
+		@foreach (var obu in Model.Users)
+		{
+			@if (await @UserManager.IsInRoleAsync(obu, "Administrator"))
+			{
+				<p>
+					<button class="btn btn-primary" style="width:250px" type="button" data-bs-toggle="collapse"
+					data-target="#collapseAdmin_@a" href="#collapseAdmin_@a" aria-expanded="false">
+						@obu.Name @obu.LastName
+					</button>
+				</p>
+			}
+			<div class="collapse" id="collapseAdmin_@a">
+				<div class="card card-body border-0">
+					<form>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.Name"></label>
+									<input asp-for="@obu.Name" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.LastName"></label>
+									<input asp-for="@obu.LastName" class="form-control" readonly />
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.Email"></label>
+									<input asp-for="@obu.Email" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.TelephoneNumber"></label>
+									<input asp-for="@obu.TelephoneNumber" class="form-control" readonly />
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.StreetName"></label>
+									<input asp-for="@obu.StreetName" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.BuildingNumber"></label>
+									<input asp-for="@obu.BuildingNumber" class="form-control" readonly />
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.CityName"></label>
+									<input asp-for="@obu.CityName" class="form-control" readonly />
+
+								</div>
+								<div class="col-md-6 mb-3">
+									<label asp-for="@obu.ZipCode"></label>
+									<input asp-for="@obu.ZipCode" class="form-control" readonly />
+
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			a++;
+		}
+	}
+</div>
+</section>

@@ -1,0 +1,91 @@
+﻿@using ProjectInsurance.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model PolicyHolderModel
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Editovat pojištěnce";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="adminCSS">
+<form method="post"><!--asp-action="Edit"-->
+	<div class="container">
+			<h1>@ViewData["Title"]</h1>
+			<hr />
+		<div class="row pt-4">
+			<div class="col-md-6 mb-3">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" class="form-control" aria-required="true"/>
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="LastName"></label>
+				<input asp-for="LastName" class="form-control" aria-required="true"/>
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="EMail"></label>
+				<input asp-for="EMail" class="form-control" aria-required="true"/>
+				<span asp-validation-for="EMail" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="TelephoneNumber"></label>
+				<input asp-for="TelephoneNumber" class="form-control" aria-required="true"/>
+				<span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="StreetName"></label>
+				<input asp-for="StreetName" class="form-control" aria-required="true"/>
+				<span asp-validation-for="StreetName" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="BuildingNumber"></label>
+				<input asp-for="BuildingNumber" class="form-control" aria-required="true"/>
+				<span asp-validation-for="BuildingNumber" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="CityName"></label>
+				<input asp-for="CityName" class="form-control" aria-required="true"/>
+				<span asp-validation-for="CityName" class="text-danger"></span>
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="ZIPCode"></label>
+				<input asp-for="ZIPCode" class="form-control" aria-required="true"/>
+				<span asp-validation-for="ZIPCode" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="row" hidden>
+			<div class="col-md-6 mb-3">
+				<label asp-for="UserId"></label>
+				<input asp-for="UserId" class="form-control" />
+				<span asp-validation-for="UserId" class="text-danger"></span>
+			</div>		
+		</div>
+	</div>
+	@*buttons*@
+	<div class="text-center">
+		<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-pencil-square"></i>&nbsp;Editovat</button>
+		<a asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-id="@Model.Id" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Detail
+		</a>
+		<a asp-controller="User" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Seznam
+		</a>
+	</div>
+</form>
+
+@section Scripts
+{
+	<!--Client side validation-->
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
+
+</section>

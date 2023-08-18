@@ -1,0 +1,26 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Smazat roli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="adminCSS">
+<form asp-action="DeleteRole">
+	<div class="container">   
+		<h1>@ViewData["Title"]</h1>
+			<hr />
+		<div class="row pt-4">
+				<div class="col-md-8 col-lg-12 mb-3">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input asp-for="Name" class="form-control" readonly/>   		
+			</div>
+		</div>
+	</div>
+		<div class="text-center text-sm-between px-3">
+			<button type="submit" class="btn btn-danger" style="width:200px"><i class="bi bi-trash"></i>&nbsp;Odstranit</button>
+		<a asp-action="IndexRole" asp-controller="Admin" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Zpět na seznam
+		</a>
+	</div>
+</form>
+	<section/>

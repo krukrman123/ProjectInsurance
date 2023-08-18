@@ -1,0 +1,16 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<div class="sidebar">
+    <ul>
+        <ul class="nav nav-pills flex-column">
+            <li><a class=" @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Osobní údaje</a></li>
+            <li><a class=" @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Změna hesla</a></li>
+            <li><a asp-controller="User" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)">Pojištěnci</a></li>
+            <li><a asp-controller="InsuranceEventModels" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)">Události</a></li>
+        </ul>
+</div>
+

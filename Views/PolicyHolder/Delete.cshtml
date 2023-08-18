@@ -1,0 +1,76 @@
+﻿@using ProjectInsurance.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@model PolicyHolderModel
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Odstranit pojištěnce";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="adminCSS">
+<form method="post" asp-action="Delete">
+	<div class="container">
+			<h1>@ViewData["Title"]</h1>
+			<hr />
+	<input asp-for="Id" hidden />
+		<div class="row pt-4">
+			<div class="col-md-6 mb-3">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" readonly class="form-control" />			
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="LastName"></label>
+				<input asp-for="LastName" readonly class="form-control" />				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="EMail"></label>
+				<input asp-for="EMail" readonly class="form-control" />
+				
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="TelephoneNumber"></label>
+				<input asp-for="TelephoneNumber" readonly class="form-control" />			
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="StreetName"></label>
+				<input asp-for="StreetName" readonly class="form-control" />				
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="BuildingNumber"></label>
+				<input asp-for="BuildingNumber" readonly class="form-control" />			
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label asp-for="CityName"></label>
+				<input asp-for="CityName" readonly class="form-control" />				
+			</div>
+			<div class="col-md-6 mb-3">
+				<label asp-for="ZIPCode"></label>
+				<input asp-for="ZIPCode" readonly class="form-control" />			
+			</div>
+		</div>
+		<div class="row" hidden>
+			<div class="col-md-6 mb-3">
+				<label asp-for="UserId"></label>
+				<input asp-for="UserId" class="form-control" />
+				<span asp-validation-for="UserId" class="text-danger"></span>
+			</div>		
+		</div>
+	</div>
+	@*buttons*@
+	<div class="text-center">
+		<button type="submit" class="btn btn-danger" style="width:200px"><i class="bi bi-trash"></i>&nbsp;Odstranit</button>
+		<a asp-controller="PolicyHolderDetail" asp-action="PolicyHolderDetail" asp-route-id="@Model.Id" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Detail
+		</a>
+		<a asp-controller="User" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)" class="btn btn-secondary btn-outline-primary" style="width:200px">
+			Seznam
+		</a>
+	</div>
+</form>
+
+</section>
