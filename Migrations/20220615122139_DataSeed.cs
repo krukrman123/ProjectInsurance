@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -58,12 +58,12 @@ namespace ProjectInsurance.Migrations
 				values: new object[]
 				{
 					"Nové_ID_Uživatele_Zde",
-					"Adam",
-					"Novák",
-					"Náměstí 28. října",
-					"1843/7",
-					"Brno",
-					"60200",
+					"Admin",
+					"Admin",
+					"222",
+					"22222",
+					"Test",
+					"222222",
 					"admin@test.com",
 					"123456789",
 					"admin@test.com",
