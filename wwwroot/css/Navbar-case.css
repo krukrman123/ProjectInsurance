@@ -1,7 +1,8 @@
-.apple.logo {
-  font-size: 21px;
-  line-height: 0;
-  color:white;
+.cube.logo {
+    font-size: 21px;
+    line-height: 0;
+    color: white;
+    margin-right: 5px;
 }
 
 .nav-link {
