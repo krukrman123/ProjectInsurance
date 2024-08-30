@@ -1,4 +1,4 @@
-﻿@using ProjectInsurance.Areas.Identity.Data
+@using ProjectInsurance.Areas.Identity.Data
 @using Microsoft.AspNetCore.Identity
 @model InsuranceEventModel
 @inject UserManager<ApplicationUser> UserManager
@@ -6,7 +6,7 @@
     ViewData["Title"] = "Nová událost";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section id="adminCSS">
+<section id="webSectionCSS">
 <form method="post">
 	<div class="container">
 		<h1>@ViewData["Title"]</h1>
@@ -54,7 +54,6 @@
 			</div>		
 		</div>			
 	</div>
-	@*buttons*@
 	<div class="text-center">
 		<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-plus-circle"></i> &nbsp;Přidat</button>
 		<a asp-controller="Admin" asp-action="Index" asp-route-id="" class="btn btn-secondary btn-outline-primary" style="width:200px">
@@ -65,7 +64,6 @@
 
 @section Scripts
 {
-	<!--Client side validation-->
 	@{
 		<partial name="_ValidationScriptsPartial" />
 	}
