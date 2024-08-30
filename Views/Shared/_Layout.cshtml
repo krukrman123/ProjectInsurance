@@ -2,8 +2,6 @@
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,117 +22,88 @@
 </head>
 
 
-
-
 <body class="d-flex flex-column min-vh-100">
 	<header>
 		<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-black text-uppercase fw-bolder">
 			<div class="container">
-				<button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+				<button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+					<span class="visually-hidden">Toggle navigation</span>
+					<span class="navbar-toggler-icon"></span>
+				</button>
 				<div class="collapse navbar-collapse" id="navcol-1">
 					<ul class="navbar-nav flex-grow-1 justify-content-start">
-						<li class="nav-item logo">	<a asp-controller="Home" asp-action="Index"><i class="icon ion-cube cube logo" style="font-size: 35px;"></i></a></li>
+						<li class="nav-item logo">
+							<a asp-controller="Home" asp-action="Index">
+								<i class="icon ion-cube cube logo" style="font-size: 35px;"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="AplicationInfo">O aplikaci</a>
+						</li>
 
-						<li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="AplicationInfo">O aplikaci</a></li>
+						@if (User.Identity.IsAuthenticated)
 
+						{
+							<li class="nav-item small-screen-nav">
+								<a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">Osobní údaje</a>
+							</li>
 
-					
+							<li class="nav-item small-screen-nav">
+								<a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">Změna hesla</a>
+							</li>
+
+							<li class="nav-item small-screen-nav">
+								<a class="nav-link" asp-controller="User" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)">Pojištěnci</a>
+							</li>
+
+							<li class="nav-item small-screen-nav">
+								<a class="nav-link" asp-controller="InsuranceEventModels" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)">Události</a>
+							</li>
+						}
+
 					</ul>
 					<partial name="_LoginPartial" />
 				</div>
-			</div>
 		</nav>
 	</header>
 
 
 
+	<main class="flex-grow-1">
 
-	<section id="adminCSS">
-		<main role="main" class="mainDisplay">
-			<div class="container">
-				<div class="row pt-4 align-items-center">
-
-					@*Adding create button on top based on page title*@
-					@if (ViewData["Title"] == "Moji pojištěnci")
-					{
-						<div class="text-center col-12 col-md-12 text-md-end">
-							<div class="p-1">
-								<a asp-controller="PolicyHolder" asp-action="Create" asp-route-userId=@Model.UserId class="btn btn-primary" style="float:right">
-									<i class="bi bi-plus-circle"></i> &nbsp;Přidat nového pojištěnce
-								</a>
-							</div>
-						</div>
-					}
-					@if (ViewData["Title"] == "Role")
-					{
-						<div class="text-center col-12 col-sm-12 text-md-end">
-							<div class="p-1">
-								<a asp-controller="Admin" asp-action="CreateRole" class="btn btn-primary" style="float:right">
-									<i class="bi bi-plus-circle"></i> &nbsp;Přidat novou roli
-								</a>
-							</div>
-						</div>
-					}
-					<partial name="_Notification" />
-				</div>
-			</div>
-		</main>
 		@RenderBody()
-
-
-	</section>
+	</main>
 
 
 	<footer>
 		<div class="row">
 			<div class="col-sm-6 col-md-4 footer-navigation">
-				<h3><a asp-area="" asp-controller="Home" asp-action="Index">Adobias<span class="text-primary">W.E.B</span></a></h3>
-
+				<h3>
+					<a asp-area="" asp-controller="Home" asp-action="Index">Adobias<span class="text-primary">W.E.B</span></a>
+				</h3>
 				<p class="links">
-					</strong>
-
 					@if (User.IsInRole("Administrator"))
 					{
-
 						<a asp-area="" asp-controller="Admin" asp-action="Index">Uživatele</a>
-
 						<strong>·</strong>
-
-						<a asp-area="" asp-controller="Admin" asp-action="IndexRole">Role</a>	
-						
+						<a asp-area="" asp-controller="Admin" asp-action="IndexRole">Role</a>
 						<strong>·</strong>
-
 						<a asp-area="" asp-controller="Admin" asp-action="CreateRole">Přidat Roli</a>
-
 						<strong>·</strong>
-
 						<a asp-area="" asp-controller="Admin" asp-action="IndexUserRole">Role uživatelu</a>
-
-					
-
-					
 					}
-
-
 
 					@if (User.IsInRole("User"))
 					{
 						<strong>·</strong>
-						<a asp-controller="User" asp-action="Index"
-						   asp-route-id="@UserManager.GetUserId(User)">Moji Pojištěnci</a>
-
+						<a asp-controller="User" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)">Moji Pojištěnci</a>
 						<strong>·</strong>
-
-						<a asp-controller="InsuranceEventModels" asp-action="Index"
-						   asp-route-id="@UserManager.GetUserId(User)">Moje Udalosti</a>
-
-						
-
+						<a asp-controller="InsuranceEventModels" asp-action="Index" asp-route-id="@UserManager.GetUserId(User)">Moje Udalosti</a>
 					}
+
 					<strong>·</strong>
 					<a asp-area="" asp-controller="Home" asp-action="AplicationInfo">&nbsp;O Aplikaci</a>
 				</p>
-
 				<p class="company-name">Dobias W.E.B © 2023</p>
 			</div>
 			<div class="col-sm-6 col-md-4 footer-contacts">
@@ -148,7 +117,7 @@
 				</div>
 				<div>
 					<i class="fa fa-envelope footer-contacts-icon"></i>
-					<p class="fs-6"> <a href="#" target="_blank">Pojistění@info.com</a></p>
+					<p class="fs-6"><a href="#" target="_blank">Pojistění@info.com</a></p>
 				</div>
 			</div>
 			<div class="col-md-4 footer-about">
@@ -165,14 +134,12 @@
 			</div>
 		</div>
 	</footer>
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/js/agency.js"></script>
 	<script src="~/js/smart-forms.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/lib/bootstrap/dist/"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
-
-
 </body>
 </html>

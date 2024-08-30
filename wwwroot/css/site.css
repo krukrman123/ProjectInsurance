@@ -1,55 +1,75 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainDisplay {
+    flex: 1;
+    margin-top: 75px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+@media (max-width: 900px) {
+    .mainDisplay {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    footer {
+        padding: 10px 0;
+    }
+}
 
 .masthead {
     background-image: url('../img/Main_Header_Image.jpg');
+    background-size: cover;
+    background-position: center;
     height: 1440px;
-    margin-top: -8px;
-    margin-bottom: -15px
 }
 
 @media (max-width: 750px) {
     .masthead {
-        background-image: url('../img/Main_Header_Image.jpg');
         height: 850px;
         margin-top: -6px;
     }
 }
 
-
 #page-top {
     background-color: slategray;
-    color: white
+    color: white;
 }
 
-
-#portfolio, #contact {
+#portfolio, #contact #appInfo {
     background: url("../img/BackGround_portfolio.jpg");
     background-position: top;
     background-size: cover;
-    margin-bottom: -301px;
-    
 }
 
-
-#register {
-    max-height: 1440px;
-    height: 300px;
-    margin-top: 109px;
-    margin-bottom: -16px;
-    background-size: initial;
+.portfolio-link {
+    text-decoration: none;
 }
 
-
-
-#register-scroll {
-    max-height: 1440px;
-    height: 300px;
-    margin-top: 109px;
-    margin-bottom: -16px;
-    background-size: initial;
-    overflow-y: scroll;
-}
+    .portfolio-link:hover {
+        text-decoration: none;
+    }
 
 
 
@@ -57,23 +77,16 @@
 
 @media (max-width: 900px) {
     #idebar {
-        max-height: 1440px;
         height: 719px;
         margin-top: -5px;
         margin-bottom: -16px;
-        ;
     }
 }
 
-
 .container_background {
-    padding: 40px 60px 40px 60px;
-    background-color: rgb(254,209,54);
+    padding: 40px 60px;
+    background-color: rgb(254, 209, 54);
     color: white;
-}
-
-
-.text-bg-dark.portfolio-hover {
 }
 
 @media (max-width: 400px) {
@@ -88,16 +101,16 @@
     }
 }
 
+@media (max-width: 500px) {
+    .services {
+        width: 332px;
+    }
+}
+
 @media (max-width: 280px) {
     html {
         width: 320px;
         background: #000000;
-    }
-}
-
-@media (max-width: 500px) {
-    .services {
-        width: 332px;
     }
 }
 
@@ -107,16 +120,12 @@
     height: 100%;
     transition: all ease .2s;
     opacity: 0;
-    background: rgba(254,209,54,0.46);
+    background: rgba(254, 209, 54, 0.46);
 }
-
-
 
 .services.login {
     margin-top: 80px;
 }
-
-
 
 a:hover {
     color: currentColor;
@@ -130,7 +139,6 @@ a:hover {
     padding: 10px 20px;
     margin: 15px 0;
     border-radius: 20px;
-    border: 0;
 }
 
 #clanky li h2 a {
@@ -138,20 +146,72 @@ a:hover {
     color: #00386B;
 }
 
-
-
 .kontakt-tlacitko:hover,
 .reference-tlacitko:hover,
 .clanky-tlacitko:hover {
     color: white;
     filter: brightness(115%) contrast(85%);
-    border: 0;
 }
 
 #sidenavAccordion {
     height: 730px;
     width: 296px;
 }
+
+.containerNav {
+    margin-top: 20px;
+}
+
+#webSectionCSS {
+    min-height: 30vh !important;
+    margin-top: 75px;
+}
+
+@media screen and (max-width: 900px) {
+    #webSectionCSS {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #webSectionCSS {
+        margin-top: 100px;
+        margin-bottom: 131px;
+    }
+}
+
+.mainDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+mainDisplayBTN {
+    float: left;
+}
+
+#appInfo {
+    background-color: dimgrey;
+    margin: 0;
+}
+
+    #appInfo .container {
+        background-color: lightsteelblue;
+        padding: 85px;
+        border-radius: 40px;
+    }
+
+
+
+
+
+@media (max-width: 380px) {
+    #appInfo .container {
+        font-size: 0.8rem;
+    }
+}
+
+
 
 
 
@@ -183,11 +243,9 @@ a:hover {
             background-color: #555;
         }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:766px) {
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+        display: none
     }
 }
 
@@ -199,68 +257,150 @@ a:hover {
     }
 }
 
-.container {
-    margin-top: 20px;
+
+
+.btnInsurend {
+    width: 200px;
 }
 
-#adminCSS {
-    height: 100%;
-    margin-top: -140px;
-    margin-bottom: 131px;
-}
-@media screen and (max-width:600px) {
-    #adminCSS {
-        height: 100%;
-        margin-top: -89px;
-        margin-bottom: 131px;
+@media screen and (max-width:991px) {
+
+    .btnInsurend {
+        margin-top: 5px;
     }
 }
 
 
 
 
-
-
-
-    .mainDisplay {
-        margin-top: 75px;
-    }
-
-    mainDisplayBTN {
-        float: left;
-    }
-
-    #navHeader {
-        height: 20px;
-        margin-top: -391px;
-    }
-
-
-#appInfo {
-    background-color: dimgrey;
-    margin-bottom: -301px;
-    margin-top: -146px;
+.btnInsurend {
+    margin: 5px;
 }
 
-@media (max-width: 900px) {
-    #appInfo {
-        background-color: dimgrey;
-        margin-bottom: -301px;
-        margin-top: -38px;
+
+
+@media screen and (max-width:353px) {
+    .detailBTN {
+        margin-top: 10px;
+        width: 250px;
     }
 }
 
 
-    #appInfo .container {
-        background-color: lightsteelblue;
-        padding: 85px;
-        border-radius: 40px
-        
+
+
+
+/*User/index css */
+
+
+@media (max-width: 576px) {
+    .table thead {
+        display: none;
     }
 
-@media (max-width: 900px) {
-    #appInfo .container {
-        margin-top: -127px;
-        border-radius: 40px;
+    .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
     }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #dee2e6;
+        white-space: normal;
+        word-wrap: break-word;
+        height: 5rem;
+    }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .table td:last-child {
+            border-bottom: 0;
+        }
+}
+
+
+
+
+/*My account css*/
+
+
+
+
+@media (max-width: 766px) {
+    .small-screen-nav {
+        display: block !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .small-screen-nav {
+        display: none !important;
+    }
+}
+
+
+
+
+
+
+/*PolicyHolderDetail*/
+
+@media (max-width: 768px) {
+    .profile-view {
+        padding: 10px;
+    }
+
+    .avatar {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+
+@media (max-width: 576px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .table td:last-child {
+            border-bottom: 0;
+        }
 }

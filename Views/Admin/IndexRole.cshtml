@@ -2,12 +2,22 @@
 
 @{
     ViewData["Title"] = "Role";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section id="adminCSS">
+<section id="webSectionCSS">
     <div class="container services" style="width: auto;">
-        <h1>@ViewData["Title"]</h1>
+        <div class="row align-items-center">
+            <div class="col-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Admin" asp-action="CreateRole" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp;Přidat novou roli
+                </a>
+            </div>
+        </div>
         <hr />
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -27,12 +37,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach (var obj in Model)
+
                                     {
                                         <tr>
                                             <td>@obj.Name</td>
                                             <td>@obj.Id</td>
                                             <td class="text-center">
-                                                <a class="btn btn-danger" type="button" asp-controller="Admin" asp-action="DeleteRole" asp-route-id="@obj.Id">Delete</a>
+                                                <a class="btn btn-danger btnInsurend" type="button" asp-controller="Admin" asp-action="DeleteRole" asp-route-id="@obj.Id">Delete</a>
                                             </td>
                                         </tr>
                                     }

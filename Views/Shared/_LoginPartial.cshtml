@@ -12,32 +12,36 @@
 
             @if (User.IsInRole("Administrator"))
             {
-              
-                <li class="nav-item dropdown">
+
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@UserManager.GetUserName(User)</a>
-                    <div class="dropdown-menu">
+                <div class="dropdown-menu">
                     <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Osobní ůdaje</a>
                     <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Index">Uživatelé</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="IndexRole">Role</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="CreateRole">Přidat roli</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="IndexUserRole">Role uživatelů</a>
-                    </div>
-                </li>
-                
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="IndexRole">Role</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="CreateRole">Přidat roli</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="IndexUserRole">Role uživatelů</a>
+                </div>
+            </li>
+
             }
 
 
             @if (User.IsInRole("User"))
             {
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="User" asp-action="Index"
-                   asp-route-id="@UserManager.GetUserId(User)">Moji Pojištěnci</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@UserManager.GetUserName(User)</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Osobní ůdaje</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-controller="User" asp-action="Index"
+                       asp-route-id="@UserManager.GetUserId(User)">Moji Pojištěnci</a>
+                    <a class="dropdown-item" asp-controller="InsuranceEventModels" asp-action="Index"
+                       asp-route-id="@UserManager.GetUserId(User)">Moje Udalosti</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="InsuranceEventModels" asp-action="Index"
-                   asp-route-id="@UserManager.GetUserId(User)">Moje Udalosti</a>
-            </li>
+
 
             }
 
@@ -54,12 +58,12 @@
     else
     {
 
-                    
-                 
-        <li class="nav-item"><a class="nav-link"  asp-area="Identity" asp-page="/Account/Login">Přihlásit se</a></li>
-        <li class="nav-item"><a class="nav-link"  asp-area="Identity" asp-page="/Account/Register">Registrace</a></li>
-                  
-  
+
+
+        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Přihlásit se</a></li>
+        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrace</a></li>
+
+
     }
 
 </ul>

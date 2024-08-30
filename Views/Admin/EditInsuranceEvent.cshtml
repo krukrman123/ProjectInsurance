@@ -2,8 +2,8 @@
 @using Microsoft.AspNetCore.Identity
 @model InsuranceEventModel
 @{
-    ViewData["Title"] = "Editovat událost";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Editovat událost";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <form method="post">
@@ -12,21 +12,21 @@
 		<div class="row pt-4">
 			<div class="col-md-6 mb-3">
 				<label asp-for="InsuranceEventTime"></label>
-				<input asp-for="InsuranceEventTime" class="form-control" aria-required="true"/>				
+				<input asp-for="InsuranceEventTime" class="form-control" aria-required="true" />
 				<span asp-validation-for="InsuranceEventTime" class="text-danger"></span>
-			</div>		
+			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6 mb-3" >
+			<div class="col-md-6 mb-3">
 				<label asp-for="PolicyHolderId"></label>
-				<input asp-for="PolicyHolderId" class="form-control" readonly placeholder=@Model.PolicyHolderId/>
+				<input asp-for="PolicyHolderId" class="form-control" readonly placeholder=@Model.PolicyHolderId />
 				<span asp-validation-for="PolicyHolderId" class="text-danger"></span>
-			</div>			
-			<div class="col-md-6 mb-3" >
+			</div>
+			<div class="col-md-6 mb-3">
 				<label asp-for="InsuranceId"></label>
-				<input asp-for="InsuranceId" class="form-control" readonly placeholder=@Model.InsuranceId/>
+				<input asp-for="InsuranceId" class="form-control" readonly placeholder=@Model.InsuranceId />
 				<span asp-validation-for="InsuranceId" class="text-danger"></span>
-			</div>			
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6 mb-3">
@@ -36,10 +36,10 @@
 			</div>
 			<div class="col-md-6 mb-3">
 				<label asp-for="PolicyHolderLastName"></label>
-				<input asp-for="PolicyHolderLastName" class="form-control" readonly placeholder=@Model.PolicyHolderLastName/>
+				<input asp-for="PolicyHolderLastName" class="form-control" readonly placeholder=@Model.PolicyHolderLastName />
 				<span asp-validation-for="PolicyHolderLastName" class="text-danger"></span>
-			</div>		
-		</div>	
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-6 mb-3">
 				<label asp-for="InsuranceType"></label>
@@ -48,10 +48,10 @@
 			</div>
 			<div class="col-md-6 mb-3">
 				<label asp-for="InsuranceSubject"></label>
-				<input asp-for="InsuranceSubject" class="form-control" readonly placeholder=@Model.InsuranceSubject/>
+				<input asp-for="InsuranceSubject" class="form-control" readonly placeholder=@Model.InsuranceSubject />
 				<span asp-validation-for="InsuranceSubject" class="text-danger"></span>
-			</div>		
-		</div>			
+			</div>
+		</div>
 	</div>
 	<div class="text-center">
 		<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-pencil-square"></i>&nbsp;Editovat</button>
@@ -66,5 +66,5 @@
 	@{
 		<partial name="_ValidationScriptsPartial" />
 	}
-	
+
 }

@@ -16,21 +16,19 @@ namespace ProjectInsurance.Controllers
             _db = db;
             _userManager = userManager;
         }
-        //Policy holder detail with linked Insurances
         public async Task<IActionResult> PolicyHolderDetail(int? id, int pg = 1)
         {
             if (id == null || id == 0)
             {
                 return RedirectToAction("NotFoundCustom", "Home");
             }
-            
+
             var insuredFromDb = await _db.Insured.FindAsync(id);
             if (insuredFromDb == null)
             {
                 return RedirectToAction("NotFoundCustom", "Home");
             }
 
-            //prevents from accessing a PolicyHolder detail by any user, redirecting to "error" page
             if (insuredFromDb.UserId != _userManager.GetUserId(User))
             {
                 return RedirectToAction("NotFoundCustom", "Home");
@@ -39,11 +37,11 @@ namespace ProjectInsurance.Controllers
             PolicyHolderDetailModel policyHolderInsuranceModel = new PolicyHolderDetailModel();
 
             PolicyHolderDetailModel thisModel = new PolicyHolderDetailModel();
-            thisModel.PolicyHolderId = insuredFromDb.Id;    
+            thisModel.PolicyHolderId = insuredFromDb.Id;
             thisModel.Name = insuredFromDb.Name;
             thisModel.LastName = insuredFromDb.LastName;
             thisModel.EMail = insuredFromDb.EMail;
-            thisModel.TelephoneNumber = insuredFromDb.TelephoneNumber;  
+            thisModel.TelephoneNumber = insuredFromDb.TelephoneNumber;
             thisModel.StreetName = insuredFromDb.StreetName;
             thisModel.BuildingNumber = insuredFromDb.BuildingNumber;
             thisModel.CityName = insuredFromDb.CityName;
@@ -70,7 +68,7 @@ namespace ProjectInsurance.Controllers
         }
 
         private async Task<List<InsuranceModel>> GetInsurances(int? id)
-        {         
+        {
             var insuranecOfHolder = from i in _db.Insurance
                                     where i.InsuranceHolderId == id
                                     select i;

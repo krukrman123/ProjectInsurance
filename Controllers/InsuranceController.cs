@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectInsurance.Controllers
 {
-    [Authorize] 
+    [Authorize]
     public class InsuranceController : Controller
     {
         private readonly ApplicationDbContext _db;

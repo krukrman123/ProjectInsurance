@@ -1,202 +1,208 @@
 ﻿@model HoldersInsurancesEventsViewModel
 
 @{
-    ViewData["Title"] = "Pojistné události";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Pojistné události";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 
-    PagerModel pager = new PagerModel();
-    int pageNo = 0;
-    if (ViewBag.Pager != null)
-    {
-        pager = ViewBag.Pager;
-        pageNo = pager.CurrentPage;
-    }
-}
-@{int p = 0;}
-@{int l = 0;}
-
-
-
-<section id="adminCSS">
-<div class="container">
-		<h1>@ViewData["Title"]</h1>
-	<hr/>
-    @*if there's no PolicyHodlers, we skip the loop for listing Insured*@
-    @if (Model.PolicyHolders.Count > 0)
-    {      
-	//Liisting all of the PolicyHolders/Insured/Events
-	@foreach (var obp in Model.PolicyHolders)
-		{					
-			<p class="text-center text-md-start">
-			<button class="btn btn-outline-primary" style="width:250px" type="button" data-bs-toggle="collapse"
-			data-target="#collapseTwo_@p" href="#collapseTwo_@p" aria-expanded="false">
-				@obp.Name @obp.LastName
-			</button>
-			<button class="btn btn-outline-secondary" style="width:250px" type="button" data-bs-toggle="collapse"
-			data-target="#collapseTwoDetail_@p" href="#collapseTwoDetail_@p" aria-expanded="false">
-				Detail
-			</button>
-			</p>
-						
-			<div class="collapse" id="collapseTwoDetail_@p">
-				<div class="card card-body border-0">
-					<form>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.Name"></label>
-									<input asp-for="@obp.Name" class="form-control" readonly />
-
-								</div>
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.LastName"></label>
-									<input asp-for="@obp.LastName" class="form-control" readonly />
-
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.EMail"></label>
-									<input asp-for="@obp.EMail" class="form-control" readonly />
-
-								</div>
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.TelephoneNumber"></label>
-									<input asp-for="@obp.TelephoneNumber" class="form-control" readonly />
-
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.StreetName"></label>
-									<input asp-for="@obp.StreetName" class="form-control" readonly />
-
-								</div>
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.BuildingNumber"></label>
-									<input asp-for="@obp.BuildingNumber" class="form-control" readonly />
-
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.CityName"></label>
-									<input asp-for="@obp.CityName" class="form-control" readonly />
-
-								</div>
-								<div class="col-md-6 mb-3">
-									<label asp-for="@obp.ZIPCode"></label>
-									<input asp-for="@obp.ZIPCode" class="form-control" readonly />
-
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-
-			<div class="collapse" id="collapseTwo_@p">
-				<div class="card card-body border-0">
-					<h5>Pojištění</h5>
-					@foreach (var obi in Model.Insurances)
-					{
-						@if (obi.InsuranceHolderId == obp.Id)
-						{
-							<button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
-							data-target="#collapseThree_@l" href="#collapseThree_@l" aria-expanded="false">
-								Pojištění @obi.InsuranceType: @obi.InsuranceSubject
-							</button>
-						}
-						<div class="collapse" id="collapseThree_@l">
-							<div class="card card-body border-0">
-								<form>
-									<div class="container">
-										<div class="row">
-											<div class="col-md-6 mb-3">
-												<label asp-for="@obi.InsuranceType"></label>
-												<input asp-for="@obi.InsuranceType" class="form-control" readonly />
-
-											</div>
-											<div class="col-md-6 mb-3">
-												<label asp-for="@obi.InsuranceSubject"></label>
-												<input asp-for="@obi.InsuranceSubject" class="form-control" readonly />
-
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6 mb-3">
-												<label asp-for="@obi.InsuranceAmount"></label>
-												<input asp-for="@obi.InsuranceAmount" class="form-control" readonly />
-
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6 mb-3">
-												<label asp-for="@obi.InsuranceValidFrom"></label>
-												<input asp-for="@obi.InsuranceValidFrom" class="form-control" readonly />
-
-											</div>
-											<div class="col-md-6 mb-3">
-												<label asp-for="@obi.InsuranceValidUntil"></label>
-												<input asp-for="@obi.InsuranceValidUntil" class="form-control" readonly />
-
-											</div>
-										</div>				
-										<div class="row">
-											<div class="d-flex flex-row  justify-content-md-start justify-content-center">
-												<div> <a asp-controller="InsuranceEventModels" asp-action="Create" asp-route-insuranceId="@obi.Id" 
-													class="btn btn-primary" style="width:205px" ><i class="bi bi-pencil-square"></i>&nbsp;Přidat událost</a>
-												</div>                
-											</div>
-										</div>
-									</div>
-								</form>									
-									
-								<h5 class="pt-4">Události</h5>
-								@foreach (var obe in Model.InsuranceEvents)
-								{
-									@if (obi.Id == obe.InsuranceId && obp.Id == obe.PolicyHolderId)
-									{										
-										<form>
-											<div class="container">
-												<div class="row">
-													<div class="col-md-6 mb-3">
-														<label asp-for="@obe.InsuranceEventTime"></label>
-														<input asp-for="@obe.InsuranceEventTime" class="form-control" readonly />
-													</div>
-												</div>
-												<div class="row">
-													<div class="d-flex flex-row justify-content-md-start justify-content-center">
-														<div> <a asp-controller="InsuranceEvent" asp-action="Edit" asp-route-id="@obe.Id" 
-															class="btn btn-outline-primary" style="width:165px" ><i class="bi bi-pencil-square"></i>&nbsp;Editovat</a>
-														</div>    
-														<div class="px-1"><a asp-controller="InsuranceEvent" asp-action="Delete" asp-route-id="@obe.Id" 
-															class="btn btn-outline-danger" style="width:165px"><i class="bi bi-trash"></i>&nbsp;Odstranit</a>
-														</div>    
-													</div>
-												</div>
-											</div>
-										</form>										
-									}
-								}
-							</div>
-						</div>
-						l++;
-					}
-				</div>
-			</div>
-			p++;
-		}
+	PagerModel pager = new PagerModel();
+	int pageNo = 0;
+	if (ViewBag.Pager != null)
+	{
+		pager = ViewBag.Pager;
+		pageNo = pager.CurrentPage;
 	}
-	else
-    {       
-        <div class="row pt-4 align-items-center">
-            <div class="col-12">Nemáte žádné pojištěnce</div>  
-        </div>     
-    }
-</div>
+}
+@{
+	int p = 0;
+}
+@{
+	int l = 0;
+}
 
 
-<partial name="_Pager" model="@pager"/>
+
+<section id="webSectionCSS">
+	<div class="container">
+		<h1>@ViewData["Title"]</h1>
+		<hr />
+
+		@if (Model.PolicyHolders.Count > 0)
+		{
+			@foreach (var obp in Model.PolicyHolders)
+			{
+				<p class="text-center text-md-start">
+					<button class="btn btn-info" style="width:250px" type="button" data-bs-toggle="collapse"
+							data-target="#collapseTwo_@p" href="#collapseTwo_@p" aria-expanded="false">
+						@obp.Name @obp.LastName
+					</button>
+					<button class="btn btn-outline-dark detailBTN" type="button" data-bs-toggle="collapse"
+							data-target="#collapseTwoDetail_@p" href="#collapseTwoDetail_@p" aria-expanded="false">
+						Detail
+					</button>
+				</p>
+
+				<div class="collapse" id="collapseTwoDetail_@p">
+					<div class="card card-body border-0">
+						<form>
+							<div class="container">
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.Name"></label>
+										<input asp-for="@obp.Name" class="form-control" readonly />
+
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.LastName"></label>
+										<input asp-for="@obp.LastName" class="form-control" readonly />
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.EMail"></label>
+										<input asp-for="@obp.EMail" class="form-control" readonly />
+
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.TelephoneNumber"></label>
+										<input asp-for="@obp.TelephoneNumber" class="form-control" readonly />
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.StreetName"></label>
+										<input asp-for="@obp.StreetName" class="form-control" readonly />
+
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.BuildingNumber"></label>
+										<input asp-for="@obp.BuildingNumber" class="form-control" readonly />
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.CityName"></label>
+										<input asp-for="@obp.CityName" class="form-control" readonly />
+
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="@obp.ZIPCode"></label>
+										<input asp-for="@obp.ZIPCode" class="form-control" readonly />
+
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="collapse" id="collapseTwo_@p">
+					<div class="card card-body border-0">
+						<h5>Pojištění</h5>
+						@foreach (var obi in Model.Insurances)
+						{
+							@if (obi.InsuranceHolderId == obp.Id)
+							{
+								<button class="btn btn-info" type="button" data-bs-toggle="collapse"
+										data-target="#collapseThree_@l" href="#collapseThree_@l" aria-expanded="false">
+									Pojištění @obi.InsuranceType: @obi.InsuranceSubject
+								</button>
+							}
+							<div class="collapse" id="collapseThree_@l">
+								<div class="card card-body border-0">
+									<form>
+										<div class="container">
+											<div class="row">
+												<div class="col-md-6 mb-3">
+													<label asp-for="@obi.InsuranceType"></label>
+													<input asp-for="@obi.InsuranceType" class="form-control" readonly />
+
+												</div>
+												<div class="col-md-6 mb-3">
+													<label asp-for="@obi.InsuranceSubject"></label>
+													<input asp-for="@obi.InsuranceSubject" class="form-control" readonly />
+
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 mb-3">
+													<label asp-for="@obi.InsuranceAmount"></label>
+													<input asp-for="@obi.InsuranceAmount" class="form-control" readonly />
+
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 mb-3">
+													<label asp-for="@obi.InsuranceValidFrom"></label>
+													<input asp-for="@obi.InsuranceValidFrom" class="form-control" readonly />
+
+												</div>
+												<div class="col-md-6 mb-3">
+													<label asp-for="@obi.InsuranceValidUntil"></label>
+													<input asp-for="@obi.InsuranceValidUntil" class="form-control" readonly />
+
+												</div>
+											</div>
+											<div class="row">
+												<div class="d-flex flex-row  justify-content-md-start justify-content-center">
+													<div>
+														<a asp-controller="InsuranceEventModels" asp-action="Create" asp-route-insuranceId="@obi.Id"
+														   class="btn btn-sucess" style="width:205px"><i class="bi bi-pencil-square"></i>&nbsp;Přidat událost</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+
+									<h5 class="pt-4">Události</h5>
+									@foreach (var obe in Model.InsuranceEvents)
+									{
+										@if (obi.Id == obe.InsuranceId && obp.Id == obe.PolicyHolderId)
+										{
+											<form>
+												<div class="container">
+													<div class="row">
+														<div class="col-md-6 mb-3">
+															<label asp-for="@obe.InsuranceEventTime"></label>
+															<input asp-for="@obe.InsuranceEventTime" class="form-control" readonly />
+														</div>
+													</div>
+													<div class="row">
+														<div class="d-flex flex-row justify-content-md-start justify-content-center">
+															<div>
+																<a asp-controller="InsuranceEventModels" asp-action="Edit" asp-route-id="@obe.Id"
+																   class="btn btn-outline-primary" style="width:165px"><i class="bi bi-pencil-square"></i>&nbsp;Editovat</a>
+															</div>
+															<div class="px-1">
+																<a asp-controller="InsuranceEventModels" asp-action="Delete" asp-route-id="@obe.Id"
+																   class="btn btn-outline-danger" style="width:165px"><i class="bi bi-trash"></i>&nbsp;Odstranit</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										}
+									}
+								</div>
+							</div>
+							l++;
+						}
+					</div>
+				</div>
+				p++;
+			}
+		}
+		else
+		{
+			<div class="row pt-4 align-items-center">
+				<div class="col-12">Nemáte žádné pojištěnce</div>
+			</div>
+		}
+	</div>
+
+
+	<partial name="_Pager" model="@pager" />
 
 </section>

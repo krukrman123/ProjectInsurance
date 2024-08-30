@@ -1,52 +1,52 @@
 div.container.profile {
-  padding: 10px 20px;
+    padding: 10px 20px;
 }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .relative {
-  position: relative;
+    position: relative;
 }
 
-.absolue {
-  position: absolute;
+.absolute {
+    position: absolute;
 }
 
 div.profile-row {
-  margin-top: 55px;
+    margin-top: 55px;
 }
 
-.absolue.center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, 0%);
+.absolute.center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
 }
 
 div.alert {
-  width: 40%;
+    width: 40%;
 }
 
 .alert-col > .alert {
-  padding: 10px;
-  border-radius: 0;
-  transition: all 0.5s ease;
-  opacity: 0;
+    padding: 10px;
+    border-radius: 0;
+    transition: all 0.5s ease;
+    opacity: 0;
 }
 
 hr {
-  height: 2px;
+    height: 2px;
 }
 
 .content-right > * {
-  float: right;
+    float: right;
 }
 
 .form-btn {
-  min-width: 100px;
-  margin: 0 5px;
-  max-width: 200px;
+    min-width: 100px;
+    margin: 0 5px;
+    max-width: 200px;
 }
 
 div.avatar-bg {
@@ -59,3 +59,28 @@ div.avatar-bg {
     margin-left: calc(50% - 100px);
 }
 
+@media (max-width: 600px) {
+    div.container.profile {
+        padding: 5px 10px;
+    }
+
+    div.alert {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    div.profile-row {
+        margin-top: 30px;
+    }
+
+    div.avatar-bg {
+        height: 150px;
+        width: 150px;
+        margin-left: calc(50% - 75px);
+    }
+
+    .form-btn {
+        min-width: 80px;
+        max-width: 150px;
+    }
+}
