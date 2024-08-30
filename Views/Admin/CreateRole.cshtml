@@ -1,11 +1,11 @@
-﻿@model RolesModel
+@model RolesModel
 
 @{
 	ViewData["Title"] = "Přidat roli";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section id="adminCSS">
+<section id="webSectionCSS">
 	<form asp-action="CreateRole">
 		<div class="container">
 			<h1>@ViewData["Title"]</h1>
@@ -27,7 +27,6 @@
 	</form>
 	@section Scripts
 		{
-		<!--Client side validation-->
 		@{
 			<partial name="_ValidationScriptsPartial" />
 		}
