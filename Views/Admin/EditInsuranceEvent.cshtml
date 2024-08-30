@@ -1,4 +1,4 @@
-﻿@using ProjectInsurance.Areas.Identity.Data
+@using ProjectInsurance.Areas.Identity.Data
 @using Microsoft.AspNetCore.Identity
 @model InsuranceEventModel
 @{
@@ -53,7 +53,6 @@
 			</div>		
 		</div>			
 	</div>
-	@*buttons*@
 	<div class="text-center">
 		<button type="submit" class="btn btn-primary" style="width:200px"><i class="bi bi-pencil-square"></i>&nbsp;Editovat</button>
 		<a asp-controller="Admin" asp-action="Index" asp-route-id="" class="btn btn-secondary btn-outline-primary" style="width:200px">
@@ -64,7 +63,6 @@
 
 @section Scripts
 {
-	<!--Client side validation-->
 	@{
 		<partial name="_ValidationScriptsPartial" />
 	}
