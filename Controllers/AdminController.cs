@@ -457,18 +457,39 @@ namespace ProjectInsurance.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateRole(RolesModel role)
-        {
-            var roleExist = await _roleManager.RoleExistsAsync(role.RoleName);
-            if (!roleExist)
-            {
-                var result = await _roleManager.CreateAsync(new IdentityRole(role.RoleName.Trim()));
-            }
-            TempData["success"] = "Role úspěšně vytvořena";
-            return View();
-        }
 
+        
+        [HttpPost]
+ public async Task<IActionResult> CreateRole(RolesModel role)
+ {
+     if (ModelState.IsValid)
+     {
+         var roleExist = await _roleManager.RoleExistsAsync(role.RoleName);
+         if (!roleExist)
+         {
+             var result = await _roleManager.CreateAsync(new IdentityRole(role.RoleName.Trim()));
+             if (result.Succeeded)
+             {
+                 TempData["success"] = "Role úspěšně vytvořena";
+                 return RedirectToAction("IndexRole"); // Redirect to the roles list
+             }
+             else
+             {
+                 foreach (var error in result.Errors)
+                 {
+                     ModelState.AddModelError("", error.Description);
+                 }
+             }
+         }
+         else
+         {
+             ModelState.AddModelError("", "Role již existuje.");
+         }
+     }
+     return View(role);
+ }
+
+ 
         //GET
         public async Task<IActionResult> DeleteRole(string? id)
         {
